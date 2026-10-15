@@ -8,6 +8,8 @@
     <Authors>Ternwire</Authors>
     <Description>C# client for the Ternwire transactional email API</Description>
     <PackageProjectUrl>https://ternwire.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ternwire/ternwire-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>email;transactional-email;ternwire;webhooks</PackageTags>
     <Copyright>Copyright (c) 2026 BNSM s. r. o.</Copyright>
