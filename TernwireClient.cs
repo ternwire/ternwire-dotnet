@@ -14,8 +14,24 @@ public sealed class TernwireClient : IDisposable
     private readonly string apiKey;
     private readonly string baseUrl;
 
-    public TernwireClient(string apiKey, string baseUrl, TimeSpan? timeout = null)
+    /// <summary>The production API origin, used when no <c>baseUrl</c> is passed.</summary>
+    public const string DefaultBaseUrl = "https://ternwire.com";
+
+    /// <summary>Creates a client for the Ternwire API.</summary>
+    /// <param name="apiKey">An <c>em_live_</c> or <c>em_test_</c> API key.</param>
+    /// <param name="baseUrl">
+    /// The API origin without <c>/v1</c>, such as <c>http://localhost:3001</c> for local development.
+    /// <see langword="null"/> uses <see cref="DefaultBaseUrl"/>.
+    /// </param>
+    /// <param name="timeout">The per-request timeout. Defaults to 30 seconds.</param>
+    public TernwireClient(string apiKey, string? baseUrl = null, TimeSpan? timeout = null)
+        : this(apiKey, baseUrl, timeout, handler: null)
     {
+    }
+
+    internal TernwireClient(string apiKey, string? baseUrl, TimeSpan? timeout, HttpMessageHandler? handler)
+    {
+        baseUrl ??= DefaultBaseUrl;
         if (!Regex.IsMatch(apiKey, @"\Aem_(live|test)_[A-Za-z0-9_-]+\z"))
             throw new ArgumentException("Use an em_live_ or em_test_ API key", nameof(apiKey));
         if (!Uri.TryCreate(baseUrl, UriKind.Absolute, out var origin)
@@ -32,7 +48,7 @@ public sealed class TernwireClient : IDisposable
         this.apiKey = apiKey;
         this.baseUrl = baseUrl.TrimEnd('/');
         // A proxy cannot reach this machine's loopback, and would receive the API key.
-        http = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false, UseProxy = !loopback }) { Timeout = requestTimeout };
+        http = new HttpClient(handler ?? new HttpClientHandler { AllowAutoRedirect = false, UseProxy = !loopback }) { Timeout = requestTimeout };
     }
 
     // Uri has already lowercased the host and bracketed IPv6 literals.
