@@ -4,7 +4,7 @@ using Ternwire;
 static string Required(string key) => Environment.GetEnvironmentVariable(key)
     ?? throw new InvalidOperationException($"Set {key}");
 
-using var client = new TernwireClient(Required("TERNWIRE_API_KEY"), Required("TERNWIRE_API_ORIGIN"));
+using var client = new TernwireClient(Required("TERNWIRE_API_KEY"), Environment.GetEnvironmentVariable("TERNWIRE_API_ORIGIN"));
 var accepted = await client.SubmitEmailAsync(new JsonObject
 {
     ["from"] = Required("TERNWIRE_FROM"),

@@ -18,3 +18,4 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet pack Ternwire.csproj -c Release
       - run: dotnet build examples/Send/Send.csproj
+      - run: dotnet test tests/Ternwire.Tests/Ternwire.Tests.csproj
