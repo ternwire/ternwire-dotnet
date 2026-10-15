@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Ternwire</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>Ternwire</Authors>
     <Description>C# client for the Ternwire transactional email API</Description>
     <PackageProjectUrl>https://ternwire.com</PackageProjectUrl>
