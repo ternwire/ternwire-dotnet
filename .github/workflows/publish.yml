@@ -43,6 +43,6 @@ jobs:
         id: login
         with:
           user: ${{ vars.NUGET_USER }}
-      - run: dotnet nuget push *.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
+      - run: dotnet nuget push ./*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
         env:
           NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
