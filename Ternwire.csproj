@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Ternwire</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Ternwire</Authors>
+    <Description>C# client for the Ternwire transactional email API</Description>
+    <PackageProjectUrl>https://ternwire.com</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>email;transactional-email;ternwire;webhooks</PackageTags>
+    <Copyright>Copyright (c) 2026 BNSM s. r. o.</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="examples/**/*.cs" />
+    <None Update="README.md" Pack="true" PackagePath="/" />
+    <None Include="LICENSE" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
